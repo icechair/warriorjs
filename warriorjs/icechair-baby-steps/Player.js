@@ -17,14 +17,14 @@ class Player {
       }
     }
     if (feel.isWall()) {
-      this.flip()
+      delete this.direction
+      return 'pivot'
     }
     return 'walk'
   }
   playTurn(warrior) {
     // Cool code goes here.
     this.health = this.health || warrior.health()
-    this.direction = this.direction || 'backward'
     const feel = warrior.feel()
     let action = this.feelAround(warrior)
     if (action == 'walk') {
@@ -33,7 +33,7 @@ class Player {
           if (isSerious(warrior)) {
             this.direction = 'backward'
           } else {
-            this.direction = 'forward'
+            delete this.direction
           }
         } else {
           action = 'rest'
