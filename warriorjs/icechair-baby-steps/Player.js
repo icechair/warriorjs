@@ -5,6 +5,29 @@ class Player {
   flip() {
     this.direction = this.direction === 'backward' ? 'forward' : 'backward'
   }
+  lookAround(warrior) {
+    const look = warrior.look(this.direction)
+    const spaces = look
+      .map((space, distance) => [space, distance])
+      .filter(([space]) => !space.isEmpty())
+    const [space, distance] = spaces[0] || []
+    if (space) {
+      if (space.isUnit()) {
+        const unit = space.getUnit()
+        if (unit.isBound() && distance < 1) {
+          return 'rescue'
+        }
+        if (unit.isEnemy()) {
+          return 'shoot'
+        }
+      }
+      if (space.isWall() && distance < 1) {
+        delete this.direction
+        return 'pivot'
+      }
+    }
+    return 'walk'
+  }
   feelAround(warrior) {
     const feel = warrior.feel(this.direction)
     if (feel.isUnit()) {
@@ -26,7 +49,7 @@ class Player {
     // Cool code goes here.
     this.health = this.health || warrior.health()
     const feel = warrior.feel()
-    let action = this.feelAround(warrior)
+    let action = this.lookAround(warrior)
     if (action == 'walk') {
       if (isInjured(warrior)) {
         if (tookDamage(warrior, this.health)) {
