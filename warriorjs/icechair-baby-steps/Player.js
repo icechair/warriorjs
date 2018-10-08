@@ -5,8 +5,13 @@ class Player {
     // Cool code goes here.
     this.health = this.health || warrior.health()
     const feel = warrior.feel()
-    if (!feel.isEmpty()) {
-      warrior.attack()
+    if (feel.isUnit()) {
+      const unit = feel.getUnit()
+      if (unit.isBound()) {
+        warrior.rescue()
+      } else {
+        warrior.attack()
+      }
     } else if (isInjured(warrior) && !tookDamage(warrior, this.health)) {
       warrior.rest()
     } else {
