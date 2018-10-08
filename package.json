@@ -1,0 +1,19 @@
+{
+	"name": "warriorjs",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "tape warriorjs/**/*.test.js",
+		"test:watch": "nodemon -w warriorjs/**/* -x \"npm test\""
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@warriorjs/cli": "^0.12.0",
+		"nodemon": "^1.18.4",
+		"prettier": "^1.14.3",
+		"tape": "^4.9.1"
+	}
+}
