@@ -1,6 +1,11 @@
 class Player {
   playTurn(warrior) {
     // Cool code goes here.
-    warrior.walk()
+    const feel = warrior.feel()
+    if (!feel.isEmpty()) {
+      warrior.attack()
+    } else {
+      warrior.walk()
+    }
   }
 }
