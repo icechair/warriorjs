@@ -6,7 +6,7 @@
   "scripts": {
     "test": "tape warriorjs/**/*.test.js",
     "test:watch": "nodemon -w warriorjs/**/* -x \"npm test\"",
-    "start": "warriorjs -s"
+    "start": "warriorjs -s -y"
   },
   "keywords": [],
   "author": "",
